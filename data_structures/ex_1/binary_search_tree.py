@@ -5,10 +5,65 @@ class BinarySearchTree:
     self.right = None
 
   def depth_first_for_each(self, cb):
-    pass    
+    print("This is the root root")
+    root = self
+    cb(root.value)
+    cb(root.left.value)
+    # current = self
+    # prev = current
+    # # go all the way to the smallest number
+    # while current.left != None:
+    #   if(current.left != None):
+
+    #   prev = current
+    #   current = current.left
+    # cb(prev.value)
+
+
+    def traverse():
+      if root:
+        self.traverse_depth(root)
+    self.traverse()
+
+    def traverse_depth(self, node):
+      if(node.left != None):
+        print("hit left")
+        cb(node.value)
+        self.traverse_depth(node.left)
+      if(node.right != None):
+        print("hit right")
+        cb(node.value)
+        self.traverse_depth(node.right)
+
+    
 
   def breadth_first_for_each(self, cb):
-    pass
+    root = self
+    print(self)
+    cb(root.value)
+
+    def traverse_breadth(self, node):
+      if(node.left and node.right):
+        cb(node.left.value)
+        cb(node.right.value)
+        self.traverse_breadth(node.left)
+        self.traverse_breadth(node.right)
+      elif(node.left and node.right == None):
+        cb(node.left.value)
+        self.traverse_breadth(node.left)
+      elif(node.right and node.left == None):
+        cb(node.right.value)
+        self.traverse_breadth(node.right)
+      else: 
+        print("no more items left")
+
+    def traverse(self):
+      root = self
+      if root:
+        self.traverse_breadth( root)
+  
+    self.traverse()
+
 
   def insert(self, value):
     new_tree = BinarySearchTree(value)
